@@ -1,1 +1,2 @@
-# nasdaq-index-rn
+# Trabajo Práctico - Inteligencia Computacional
+## Predicción del Indice de NASDAQ
