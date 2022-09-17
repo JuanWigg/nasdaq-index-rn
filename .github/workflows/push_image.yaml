@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Docker Login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -20,14 +20,22 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     
-    - name: Build Docker image
+    - name: Set Image tag
+      id: set-image-tag
+      shell: bash
       run: |
-        
+        echo "::set-output name=image_tag::$(echo ${{ github.sha }} | cut -c1-12)".
+
+    - name: Build Docker image
+      env:
+        IMAGE_TAG: ${{ steps.set-image-tag.outputs.image_tag }}
+      run: |
         docker build . --file Dockerfile --tag juanwigg/nasdaq-index-red:$IMAGE_TAG
         docker tag juanwigg/nasdaq-index-red:$IMAGE_TAG juanwigg/nasdaq-index-red:latest
       
     - name: Push Docker image
+      env:
+        IMAGE_TAG: ${{ steps.set-image-tag.outputs.image_tag }}
       run: |
-        export IMAGE_TAG=$(echo ${{ github.sha }} | cut -c1-12)
         docker push juanwigg/nasdaq-index-red:$IMAGE_TAG
         docker push juanwigg/nasdaq-index-red:latest
