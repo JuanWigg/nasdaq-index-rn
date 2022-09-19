@@ -5,11 +5,11 @@ import os
 
 def getWeekDayValueSin(index):
     date_object = pd.to_datetime(index)
-    return np.sin(date_object.isoweekday() * (2* np.pi / 7))
+    return np.sin(date_object.isoweekday() * (2* np.pi / 5))
 
 def getWeekDayValueCos(index):
     date_object = pd.to_datetime(index)
-    return np.cos(date_object.isoweekday() * (2* np.pi / 7))
+    return np.cos(date_object.isoweekday() * (2* np.pi / 5))
 
 def splitDataframe(dataframe):
     first_70days = dataframe.iloc[:70, :]
