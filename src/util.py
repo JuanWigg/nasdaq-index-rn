@@ -29,5 +29,7 @@ def getDataset():
     sorted_dataset['Open'] = np.where(sorted_dataset['Open']==0, sorted_dataset['Close'], sorted_dataset['Open'])
     sorted_dataset['High'] = np.where(sorted_dataset['High']==0, sorted_dataset['Close'], sorted_dataset['High'])
     sorted_dataset['Low'] = np.where(sorted_dataset['Low']==0, sorted_dataset['Close'], sorted_dataset['Low'])
+    sorted_dataset['weekDayValueSin'] = sorted_dataset.apply(lambda row: getWeekDayValueSin(row['Date']), axis=1)
+    sorted_dataset['weekDayValueCos'] = sorted_dataset.apply(lambda row: getWeekDayValueCos(row['Date']), axis=1)
 
     return sorted_dataset
