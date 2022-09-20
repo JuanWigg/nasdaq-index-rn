@@ -57,8 +57,8 @@ print("===========================================================")
 
 model = tf.keras.Sequential()
 model.add(tf.keras.layers.Dense(50, input_dim=6, activation=tf.keras.activations.relu))
-model.add(tf.keras.layers.Dense(100))
-model.add(tf.keras.layers.Dense(50, activation=tf.keras.activations.relu))
+model.add(tf.keras.layers.Dense(100, activation=tf.keras.activations.relu))
+# model.add(tf.keras.layers.Dense(50, activation=tf.keras.activations.relu))
 model.add(tf.keras.layers.Dense(1))
 
 
@@ -69,14 +69,14 @@ model.add(tf.keras.layers.Dense(1))
 #modelo = tf.keras.layers.Model(inputs, x)
 
 model.compile(
-    optimizer=tf.keras.optimizers.RMSprop(learning_rate=0.00001),
+    optimizer=tf.keras.optimizers.Adam(learning_rate=0.00001),
     loss='mean_squared_error',
     metrics=['mae']
 )
 
 print(model.summary())
 print("Comenzando entrenamiento...")
-historial = model.fit(training_inputs, training_outputs, epochs=2000, verbose=1, shuffle=True, validation_data=(validation_inputs, validation_outputs))
+historial = model.fit(training_inputs, training_outputs, epochs=1000, verbose=1, shuffle=True, validation_data=(validation_inputs, validation_outputs))
 print("Modelo entrenado!")
 
 print("Hagamos una predicción!")
@@ -116,5 +116,6 @@ plt.xlabel("Date")
 plt.ylabel("Cierre")
 plt.plot(validation_outputs, marker="s", color='red')
 plt.show()
+
 
 
