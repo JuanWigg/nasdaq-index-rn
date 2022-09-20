@@ -33,7 +33,14 @@ print("Last portion: \n")
 print(last_days)
 
 predicted_last_days = last_days.copy()
-predicted_last_days['Close'] = predicted_last_days['Close'].apply(lambda x: x+random.randint(-20,20))
+predicted_last_days['Close'] = predicted_last_days['Close'].apply(lambda x: x+random.randint(-50,50))
+
+
+print("====================")
+print(last_days['Close'])
+print("====================")
+print(predicted_last_days['Close'])
+print("====================")
 
 print(r2_score(last_days['Close'], predicted_last_days['Close']))
 
