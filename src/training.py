@@ -97,8 +97,10 @@ model.compile(
 
 print(model.summary())
 print("Comenzando entrenamiento...")
-historial = model.fit(training_inputs, training_outputs, epochs=10000 ,verbose=1, validation_data=(validation_inputs, validation_outputs))
+historial = model.fit(training_inputs, training_outputs, epochs=3000 ,verbose=1, validation_data=(validation_inputs, validation_outputs))
 print("Modelo entrenado!")
+
+model.save('model.h5', historial)
 
 print("Hagamos una predicción!")
 print(len(validation_inputs))
@@ -129,12 +131,14 @@ resultados = model.predict(prediction_inputs)
 
 
 flat_results = [item for sublist in resultados for item in sublist]
+flat_results2 = flat_results.copy()
+flat_results2.append(flat_results[-1])
+flat_results2.pop(0)
 
-
-print(f'R2: {r2_score(prediction_outputs, flat_results)}')
-plt.plot(flat_results, marker='o', color='green')
-plt.xlabel("Date")
-plt.ylabel("Cierre")
+print(f'R2: {r2_score(prediction_outputs, flat_results2)}')
+plt.plot(flat_results2, marker='o', color='green')
+plt.xlabel("Fecha")
+plt.ylabel("Valor de cierre")
 plt.plot(prediction_outputs, marker="s", color='red')
 plt.show()
 

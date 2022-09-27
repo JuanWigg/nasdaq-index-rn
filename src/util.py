@@ -14,7 +14,7 @@ def getWeekDayValueCos(index):
 def splitDataframe(dataframe):
     first_days = dataframe.iloc[:350, :]
     medium_days = dataframe.iloc[350:450, :]
-    last_days = dataframe.iloc[450:, :]
+    last_days = dataframe.iloc[650:, :]
     return first_days,medium_days, last_days
 
 def getTotalDataframe(dataframe):
@@ -26,7 +26,7 @@ def getDataset():
 
     dataset = pd.read_csv(filename, parse_dates=[0])
     dataset = dataset.rename(columns={"Close/Last": "Close"})
-    filtered_dataset = dataset.query("Date >= '2015-01-01' and Date <= '2016-12-31'" )
+    filtered_dataset = dataset.query("Date >= '2015-01-01' and Date <= '2017-12-31'" )
     sorted_dataset = filtered_dataset[::-1]
     sorted_dataset = sorted_dataset.reset_index()
     sorted_dataset = sorted_dataset.drop(columns=['Volume'])
