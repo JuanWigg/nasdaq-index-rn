@@ -24,7 +24,7 @@ sorted_dataset['weekDay'] = sorted_dataset.apply(lambda row: pd.to_datetime(row[
 print(sorted_dataset)
 
 print("========== Splitting Dataset ==========\n")
-first_70days, last_days = util.splitDataframe(sorted_dataset)
+first_70days, last_days = util.splitDataset(sorted_dataset)
 
 print("First portion: \n")
 print(first_70days)

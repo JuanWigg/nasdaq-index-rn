@@ -11,7 +11,7 @@ def toArrayOfArrays(value):
 
 
 dataset = util.getDataset()
-training_set, validation_set, prediction_set = util.splitDataframe(dataset)
+training_set, validation_set, prediction_set = util.splitDataset(dataset)
 
 training_close_values = training_set['Close'].to_numpy()
 training_weekDay_sin_values = training_set['weekDayValueSin'].to_numpy()
