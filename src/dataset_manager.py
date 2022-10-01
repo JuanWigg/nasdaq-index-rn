@@ -74,6 +74,6 @@ def generateTrainingIOs(training_days: DataFrame, dias_hacia_atras: int):
         training_input.append(training_weekDay_sin_values[i])
         training_input.append(training_weekDay_cos_values[i])
         training_inputs.append(training_input)
-        training_outputs.append([training_close_values[i]])
+        training_outputs.append([training_close_values[i] - training_input[3]])
 
     return training_inputs, training_outputs
