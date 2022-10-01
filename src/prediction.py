@@ -3,15 +3,15 @@ from fileinput import close
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
-import util
+import dataset_manager
 from sklearn.metrics import r2_score
 
 def toArrayOfArrays(value):
     return [value]
 
 
-dataset = util.getDataset()
-training_set, validation_set, prediction_set = util.splitDataset(dataset)
+dataset = dataset_manager.getDataset()
+training_set, validation_set, prediction_set = dataset_manager.splitDataset(dataset)
 
 training_close_values = training_set['Close'].to_numpy()
 training_weekDay_sin_values = training_set['weekDayValueSin'].to_numpy()
